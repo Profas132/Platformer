@@ -5,7 +5,8 @@ using UnityEngine;
 public class enemyHP : MonoBehaviour
 {
     [SerializeField] private float maxHP;
-    public float currentHP;
+    [SerializeField] private bool canDie;
+    private float currentHP;
 
     private void Awake()
     {
@@ -15,7 +16,12 @@ public class enemyHP : MonoBehaviour
     public void takeAHit(float damage)
     {
         currentHP -= damage;
-
+        if (currentHP < 0 && canDie) Die();
         Debug.Log(currentHP);
+    }
+
+    private void Die()
+    {
+        gameObject.SetActive(false);
     }
 }

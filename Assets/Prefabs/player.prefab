@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 7277739347432778299}
   m_Layer: 0
   m_Name: player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -314,8 +314,8 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_SleepingMode: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!114 &4961233292683963187
 MonoBehaviour:
@@ -345,7 +345,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RB: {fileID: 0}
   maxjump: 100
-  isGrounded: 1
   rayDistance: 0.68
   groundLayerMask:
     serializedVersion: 2

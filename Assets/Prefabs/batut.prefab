@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 564399931714947877}
   - component: {fileID: 2577247355007814304}
   - component: {fileID: 3152630174380049614}
+  - component: {fileID: 6767640085323030833}
   m_Layer: 7
   m_Name: batut
   m_TagString: Untagged
@@ -131,6 +132,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &6767640085323030833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2714798320709536402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a42f6fd0bf4dbef4ebec4a95c5f2ccce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxImpulse: 200
+  jumpPodCollider2D: {fileID: 7092124286873876218}
 --- !u!1 &7637789125046396667
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,7 +157,6 @@ GameObject:
   - component: {fileID: 7970945732813108153}
   - component: {fileID: 2186576856237242782}
   - component: {fileID: 7092124286873876218}
-  - component: {fileID: 8115285826850841756}
   m_Layer: 7
   m_Name: Square
   m_TagString: Untagged
@@ -262,16 +276,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &8115285826850841756
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7637789125046396667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a42f6fd0bf4dbef4ebec4a95c5f2ccce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxImpulse: 100

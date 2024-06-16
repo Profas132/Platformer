@@ -9,15 +9,10 @@ public class batut : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
-
         if (collision.gameObject.GetComponent<jump>())
         {
-            Debug.Log("jump");
-            if (collision.gameObject.GetComponent<jump>())
-            {
-                collision.rigidbody.AddForce(new Vector2(0, maxImpulse), ForceMode2D.Impulse);
-            }
+                Debug.Log("jump");
+                collision.gameObject.GetComponent<jump>().Jumping(maxImpulse);
         }
     }
 }
