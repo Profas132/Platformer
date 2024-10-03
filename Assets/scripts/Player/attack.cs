@@ -19,8 +19,8 @@ public class attack : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetButtonDown("Fire1")) animator.SetTrigger("isAttack");
-        if (Input.GetButtonDown("Fire2")) animator.SetTrigger("forceAttack");
+        if (Input.GetButton("Fire1")) animator.SetTrigger("isAttack");
+        if (Input.GetButton("Fire2")) animator.SetTrigger("forceAttack");
     }
 
     private void OnDrawGizmosSelected()
