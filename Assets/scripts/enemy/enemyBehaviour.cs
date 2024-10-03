@@ -11,16 +11,29 @@ public class enemyBehaviour : MonoBehaviour
     [SerializeField] private Transform rightBorder;
     [SerializeField] private LayerMask defaultLayerMask;
     [SerializeField] private LayerMask groundLayerMask;
+
+    
     private Transform targetTransform;
+    private Vector3 targetPos;
+
     private void Start()
     {
         targetTransform = GameObject.FindGameObjectsWithTag("Player")[0].transform;
         Physics2D.queriesHitTriggers = false;
+        targetPos = targetTransform.position;
     }
 
     void MoveTowardsPlayer()
     {
-        if (transform.position.x < targetTransform.position.x)
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2((targetPos - transform.position).x, 0f).normalized, detectRange);
+
+        if (hit.transform.tag == "Ground")
+        {
+            // надо прыгнуть по идее
+        }
+        
+
+        if (transform.position.x < targetPos.x)
         {
             if (Physics2D.Raycast(rightBorder.position, Vector3.down, 1f, groundLayerMask)) // вправо
             {
@@ -51,15 +64,19 @@ public class enemyBehaviour : MonoBehaviour
 
     void Update()
     {
+        
         RaycastHit2D hit = Physics2D.Raycast(transform.position, targetTransform.position - transform.position, detectRange, defaultLayerMask);
-        if (hit.transform.tag == "Player")
+        
+        if (hit)
         {
-            Debug.DrawRay(transform.position, targetTransform.position - transform.position, Color.red);
+            if (hit.transform.tag == "Player")
+            targetPos = targetTransform.position;
+            Debug.DrawRay(transform.position, targetPos - transform.position, Color.red);
             MoveTowardsPlayer();
         }
         else
         {
-            Patrol();
+            MoveTowardsPlayer(); // тут надо патрулировать lastpos
         }
 
 
