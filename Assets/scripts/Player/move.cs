@@ -23,7 +23,7 @@ public class move : MonoBehaviour
         {
             FlipPerson(0);
         }
-        else if (horizontal < 0)
+        else if (horizontal < 0)    
         {
             FlipPerson(-180);
         }
