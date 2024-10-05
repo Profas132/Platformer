@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 
-public class attack : MonoBehaviour
+public class attack : Sounds
 {
     [Header("Setting")]
     [SerializeField] private LayerMask DamageableLayerMask;
@@ -19,8 +19,14 @@ public class attack : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetButton("Fire1")) animator.SetTrigger("isAttack");
-        if (Input.GetButton("Fire2")) animator.SetTrigger("forceAttack");
+        if (Input.GetButton("Fire1"))
+        {
+            animator.SetTrigger("isAttack");
+        }
+        if (Input.GetButton("Fire2")) 
+        {
+            animator.SetTrigger("forceAttack");
+        }
     }
 
     private void OnDrawGizmosSelected()
@@ -38,6 +44,8 @@ public class attack : MonoBehaviour
             //добавить урон по врагу
             enemies[i].GetComponent<enemyHP>().takeAHit(damage);
             i++;
+
+            PlaySound(sounds[0], p1: 0.5f, p2: 0.8f);
         }
 
         //UnityEngine.Debug.Log(damage);

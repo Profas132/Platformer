@@ -6,7 +6,7 @@ using UnityEngine;
 public class enemyBehaviour : MonoBehaviour
 {
 
-    [SerializeField] private float detectRange;
+    [SerializeField][Range(0, 10)] private float detectRange;
     [SerializeField] private float moveSpeed;
     [SerializeField][Range(0, 1)] private float groundCheckDist;
     //[SerializeField] private Transform leftBorder;
@@ -31,7 +31,6 @@ public class enemyBehaviour : MonoBehaviour
         //{
         //    // надо прыгнуть по идее
         //}
-        Debug.DrawRay(transform.position, Vector3.down*groundCheckDist, Color.green);//луч для сверки с землёй
 
         if (Physics2D.Raycast(transform.position, Vector3.down, groundCheckDist, groundLayerMask))//проверка на землю
         {
@@ -46,6 +45,7 @@ public class enemyBehaviour : MonoBehaviour
         transform.position += new Vector3(moveSpeed * Time.deltaTime, 0f, 0f);
         transform.eulerAngles = new Vector3(0, y, 0);
     }
+
     //void Patrol()
     //{
     //    if (Physics2D.Raycast(rightBorder.position, Vector3.down, 1f, groundLayerMask)) // вправо
@@ -58,13 +58,7 @@ public class enemyBehaviour : MonoBehaviour
     //    }
     //}
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, detectRange);
-    }
-
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         //RaycastHit2D hit = Physics2D.Raycast(transform.position, targetTransform.position - transform.position, detectRange, defaultLayerMask);
         Collider2D[] playerPosition = Physics2D.OverlapCircleAll(transform.position, detectRange, playerLayerMask); //поиск игрока
@@ -77,6 +71,8 @@ public class enemyBehaviour : MonoBehaviour
             i++;
         }
 
+        Debug.DrawRay(transform.position, Vector3.down * groundCheckDist, Color.green);//луч для сверки с землёй
+
         //if (hit)
         //{
         //    targetPos = targetTransform.position;
@@ -87,5 +83,10 @@ public class enemyBehaviour : MonoBehaviour
         //{
         //    MoveTowardsPlayer(); // тут надо патрулировать lastpos
         //}
+    }
+    private void OnDrawGizmosSelected()//визуализация радиуса обнаружения
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, detectRange);
     }
 }

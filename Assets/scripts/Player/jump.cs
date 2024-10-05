@@ -2,19 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class jump : MonoBehaviour
+public class jump : Sounds
 {
     public Rigidbody2D RB;
     public float maxjump; //нужно будет подключать к данным персонажа
     public float dashForce;
-    private float jumpCooldown = 0.2f;
+    [SerializeField] private float jumpCooldown = 0.2f;
     private float time = 0.2f;
     private bool isGrounded;
     private bool jumpBust;
-    [SerializeField] private float rayDistance;
+    [SerializeField] private float rayDistanceCheckGround;
     [SerializeField] private LayerMask groundLayerMask;
     
-
     private void Awake()
     {
         RB = GetComponent<Rigidbody2D>();
@@ -22,18 +21,18 @@ public class jump : MonoBehaviour
 
     void Update()
     {
-        time += Time.deltaTime;
+        isGrounded = Physics2D.Raycast(RB.position, Vector3.down, rayDistanceCheckGround, groundLayerMask);
+        Debug.DrawRay(RB.position, Vector3.down * rayDistanceCheckGround, Color.green);
 
-        isGrounded = Physics2D.Raycast(RB.position, Vector3.down, rayDistance, groundLayerMask);
-        Debug.DrawRay(RB.position, Vector3.down * rayDistance, Color.green);
+        if ((/*Input.GetKey(KeyCode.W) ||*/ Input.GetKey(KeyCode.Space)) && isGrounded) Jumping(maxjump);
 
-        if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space)) && isGrounded) Jumping(maxjump);
-
-        if (Input.GetKeyDown(KeyCode.V))
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             Debug.Log("dash");
             RB.AddForce(gameObject.transform.right * dashForce, ForceMode2D.Impulse);
+            PlaySound(sounds[1], p1: 0.5f, p2: 0.8f);
         }
+        if (time<=jumpCooldown) time += Time.deltaTime;
     }
 
     public void Jumping(float distance)
@@ -42,6 +41,7 @@ public class jump : MonoBehaviour
         {
             RB.AddForce(new Vector2(0, distance), ForceMode2D.Impulse);
             time = 0;
+            PlaySound(sounds[0], p1: 2f, p2: 4f);
         }
     }
     

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class move : MonoBehaviour
+public class move : Sounds
 {
     public Rigidbody2D RB;
     public float maxSpeed; //нужно будет подключать к данным персонажа
@@ -18,6 +18,8 @@ public class move : MonoBehaviour
         float horizontal = Input.GetAxisRaw("Horizontal");
         Vector2 movement = new Vector2 (horizontal, 0);
         RB.AddForce(movement * maxSpeed * 200);
+        
+        //if (horizontal!=0) PlaySound(sounds[0], p1: 0.5f, p2: 0.8f);
 
         if (horizontal > 0)
         {
