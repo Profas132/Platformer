@@ -9,34 +9,43 @@ public class enemyBehaviour : MonoBehaviour
     [SerializeField][Range(0, 10)] private float detectRange;
     [SerializeField] private float moveSpeed;
     [SerializeField][Range(0, 1)] private float groundCheckDist;
-    //[SerializeField] private Transform leftBorder;
-    //[SerializeField] private Transform rightBorder;
+
     [SerializeField] private LayerMask playerLayerMask;
     [SerializeField] private LayerMask groundLayerMask;
 
-    //private Transform targetTransform;
-    //private Vector3 targetPos;
 
-    //private void Start()
-    //{
-    //    //targetTransform = GameObject.FindGameObjectsWithTag("Player")[0].transform;
-    //    //targetPos = targetTransform.position;
-    //}
+    private void Start()
+    {
+        Physics2D.queriesHitTriggers = false;
+    }
+
 
     private void MoveTowardsPlayer(Transform playerPosition)
     {
-        //RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2((targetPos - transform.position).x, 0f).normalized, detectRange);
-
-        //if (hit.transform.tag == "Ground")
-        //{
-        //    // надо прыгнуть по идее
-        //}
-
-        if (Physics2D.Raycast(transform.position, Vector3.down, groundCheckDist, groundLayerMask))//проверка на землю
+        bool onGround = Physics2D.Raycast(transform.position, Vector3.down, groundCheckDist, groundLayerMask);
+        
+        // если рядом стенка можно попробовать ее перепрыгнуть 
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2((playerPosition.position - transform.position).x, 0f).normalized, detectRange);
+        //Debug.DrawRay(transform.position, new Vector2((playerPosition.position - transform.position).x, 0f), Color.red);
+        if (hit != playerPosition.gameObject && onGround)
         {
+            enemyJump();
+        }
+
+
+        hit = Physics2D.Raycast(transform.position, playerPosition.position - transform.position, detectRange);
+        Debug.DrawRay(transform.position, playerPosition.position - transform.position, Color.red);
+        if (hit.transform == transform && onGround) //а нужна ли тут проверка на землю? 
+        {
+            Debug.Log(hit.transform);
             if (transform.position.x < playerPosition.position.x)
+            {
                 enemyMove(moveSpeed, 180);
-            else enemyMove(-moveSpeed, 0);
+            }
+            else
+            {
+                enemyMove(-moveSpeed, 0);
+            }
         }
     }
 
@@ -46,41 +55,30 @@ public class enemyBehaviour : MonoBehaviour
         transform.eulerAngles = new Vector3(0, y, 0);
     }
 
-    //void Patrol()
-    //{
-    //    if (Physics2D.Raycast(rightBorder.position, Vector3.down, 1f, groundLayerMask)) // вправо
-    //    {
-    //        transform.position += new Vector3(speed * Time.deltaTime, 0f, 0f);
-    //    }
-    //    if (Physics2D.Raycast(leftBorder.position, Vector3.down, 1f, groundLayerMask)) // влево
-    //    {
-    //        transform.position += new Vector3(-speed * Time.deltaTime, 0f, 0f);
-    //    }
-    //}
+    private void enemyJump()
+    {
+        //jump
+    }
 
     void FixedUpdate()
     {
-        //RaycastHit2D hit = Physics2D.Raycast(transform.position, targetTransform.position - transform.position, detectRange, defaultLayerMask);
+
         Collider2D[] playerPosition = Physics2D.OverlapCircleAll(transform.position, detectRange, playerLayerMask); //поиск игрока
 
+<<<<<<< HEAD
         foreach (var item in playerPosition)//перебор всех вариантов играков
         {
             //UnityEngine.Debug.Log("opaopa");
             MoveTowardsPlayer(item.transform);
+=======
+        foreach (var target in playerPosition)//перебор всех вариантов играков
+        {
+            MoveTowardsPlayer(target.transform);
+>>>>>>> 9b6ef5bf3e65651d251f18720d84fa69caafa7a9
         }
 
         Debug.DrawRay(transform.position, Vector3.down * groundCheckDist, Color.green);//луч для сверки с землёй
 
-        //if (hit)
-        //{
-        //    targetPos = targetTransform.position;
-        //    Debug.DrawRay(transform.position, targetPos - transform.position, Color.red);
-        //    MoveTowardsPlayer();
-        //}
-        //else
-        //{
-        //    MoveTowardsPlayer(); // тут надо патрулировать lastpos
-        //}
     }
     private void OnDrawGizmosSelected()//визуализация радиуса обнаружения
     {

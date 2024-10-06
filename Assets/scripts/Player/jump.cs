@@ -24,14 +24,15 @@ public class jump : Sounds
         isGrounded = Physics2D.Raycast(RB.position, Vector3.down, rayDistanceCheckGround, groundLayerMask);
         Debug.DrawRay(RB.position, Vector3.down * rayDistanceCheckGround, Color.green);
 
-        if ((/*Input.GetKey(KeyCode.W) ||*/ Input.GetKey(KeyCode.Space)) && isGrounded) Jumping(maxjump);
+        if (Input.GetKey(GameManager.GM.jump) && isGrounded) Jumping(maxjump);
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(GameManager.GM.dash))
         {
             Debug.Log("dash");
             RB.AddForce(gameObject.transform.right * dashForce, ForceMode2D.Impulse);
             PlaySound(sounds[1], p1: 0.5f, p2: 0.8f);
         }
+
         if (time<=jumpCooldown) time += Time.deltaTime;
     }
 
