@@ -9,7 +9,7 @@ public class jump : Sounds
     public float dashForce;
     [SerializeField] private float jumpCooldown = 0.2f;
     private float time = 0.2f;
-    private bool isGrounded;
+    public bool isGrounded;
     private bool jumpBust;
     [SerializeField] private float rayDistanceCheckGround;
     [SerializeField] private LayerMask groundLayerMask;

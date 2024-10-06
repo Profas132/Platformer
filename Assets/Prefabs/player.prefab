@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9002863569247582688}
   - component: {fileID: 4217471842653953519}
   - component: {fileID: 5752467313524670248}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Triangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 3086045256414468549}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.54, y: 0.47, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.887, y: 0.343, z: 0}
+  m_LocalScale: {x: 0.6951, y: 0.6951, z: 0.6951}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6189924718891146754}
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 0.9528302, g: 0.6067551, b: 0.6067551, a: 1}
+  m_Color: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 8239584259796054726}
   - component: {fileID: 7277739347432778299}
   - component: {fileID: 723758359381211741}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -214,12 +214,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -5177388603050735206, guid: 8884154dfe85442a3a3578be807dbcdf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1b6fe4001e2369e4f8073a33be291224, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 2
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 1
+  m_Size: {x: 3, y: 3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -278,18 +278,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.09075278, y: -0.08145541}
   m_SpriteTilingProperty:
-    border: {x: 0.25, y: 0.25, z: 0.25, w: 0.25}
+    border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 7.26, y: 9.88}
+    newSize: {x: 3, y: 3}
     adaptiveTilingThreshold: 0.5
-    drawMode: 2
+    drawMode: 1
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.3973693, y: 1.3881594}
   m_EdgeRadius: 0
 --- !u!50 &1208968453605308798
 Rigidbody2D:
@@ -330,6 +330,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f8ca28af00db28478b4fedee4845125, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sounds:
+  - {fileID: 8300000, guid: 19416afafe31a1342ac547c587db399c, type: 3}
+  - {fileID: 8300000, guid: 1cc48814d1ad55a489fc0d08098cb84a, type: 3}
   RB: {fileID: 0}
   maxSpeed: 2
 --- !u!114 &8239584259796054726
@@ -344,12 +347,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca5a6c01fbbe54d468ee3172cdf23a4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sounds:
+  - {fileID: 8300000, guid: 2fc5b483b33137c4f9c1f065d65e716b, type: 3}
+  - {fileID: 8300000, guid: f182840ba0eb52547823aa7b5fa920bd, type: 3}
   RB: {fileID: 0}
   maxjump: 100
   dashForce: 100
   jumpCooldown: 0.2
-  time: 0.2
-  rayDistanceCheckGround: 0.51
+  rayDistanceCheckGround: 1
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 136
@@ -365,6 +370,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d64fe51c96107f46a5f113f2b305f66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sounds:
+  - {fileID: 8300000, guid: b3864cacba8d61c41878c776b9a3d8ed, type: 3}
+  - {fileID: 8300000, guid: 2fc5b483b33137c4f9c1f065d65e716b, type: 3}
   DamageableLayerMask:
     serializedVersion: 2
     m_Bits: 64

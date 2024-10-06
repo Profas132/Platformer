@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9060983784352742812}
   - component: {fileID: 377099245125681720}
   - component: {fileID: 8347178621129893568}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BOX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ Rigidbody2D:
   m_Mass: 10
   m_LinearDrag: 3
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 10
   m_Material: {fileID: 6200000, guid: eb25a8198ae6bbb49bf2c59a3cc39039, type: 2}
   m_IncludeLayers:
     serializedVersion: 2

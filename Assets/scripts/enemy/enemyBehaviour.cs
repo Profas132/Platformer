@@ -63,12 +63,10 @@ public class enemyBehaviour : MonoBehaviour
         //RaycastHit2D hit = Physics2D.Raycast(transform.position, targetTransform.position - transform.position, detectRange, defaultLayerMask);
         Collider2D[] playerPosition = Physics2D.OverlapCircleAll(transform.position, detectRange, playerLayerMask); //поиск игрока
 
-        int i = 0;
         foreach (var item in playerPosition)//перебор всех вариантов играков
         {
             //UnityEngine.Debug.Log("opaopa");
-            MoveTowardsPlayer(playerPosition[i].transform);
-            i++;
+            MoveTowardsPlayer(item.transform);
         }
 
         Debug.DrawRay(transform.position, Vector3.down * groundCheckDist, Color.green);//луч для сверки с землёй

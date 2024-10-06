@@ -38,16 +38,14 @@ public class attack : Sounds
     private void hit(float damage) //урон меням прямиком в анимации или вызывая эту функцию
     {
         Collider2D[] enemies = Physics2D.OverlapCircleAll(weaponCollider2D.transform.position, AttackRange, DamageableLayerMask);
-        int i = 0;
+
         foreach (var item in enemies)
         {
             //добавить урон по врагу
-            enemies[i].GetComponent<enemyHP>().takeAHit(damage);
-            i++;
+            item.GetComponent<enemyHP>().takeAHit(damage);
 
             PlaySound(sounds[0], p1: 0.5f, p2: 0.8f);
         }
-
         //UnityEngine.Debug.Log(damage);
     }
 
