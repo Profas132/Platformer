@@ -14,14 +14,10 @@ public class enemyBehaviour : MonoBehaviour
     [SerializeField] private LayerMask playerLayerMask;
     [SerializeField] private LayerMask groundLayerMask;
 
-    //private Transform targetTransform;
-    //private Vector3 targetPos;
-
-    //private void Start()
-    //{
-    //    //targetTransform = GameObject.FindGameObjectsWithTag("Player")[0].transform;
-    //    //targetPos = targetTransform.position;
-    //}
+    private void Start()
+    {
+        Physics2D.queriesHitTriggers = false;
+    }
 
     private void MoveTowardsPlayer(Transform playerPosition)
     {
@@ -60,7 +56,10 @@ public class enemyBehaviour : MonoBehaviour
 
     void FixedUpdate()
     {
-        //RaycastHit2D hit = Physics2D.Raycast(transform.position, targetTransform.position - transform.position, detectRange, defaultLayerMask);
+//<<<<<<< Updated upstream
+//        //RaycastHit2D hit = Physics2D.Raycast(transform.position, targetTransform.position - transform.position, detectRange, defaultLayerMask);
+//=======
+//>>>>>>> Stashed changes
         Collider2D[] playerPosition = Physics2D.OverlapCircleAll(transform.position, detectRange, playerLayerMask); //поиск игрока
 
         foreach (var item in playerPosition)//перебор всех вариантов играков
@@ -70,18 +69,22 @@ public class enemyBehaviour : MonoBehaviour
         }
 
         Debug.DrawRay(transform.position, Vector3.down * groundCheckDist, Color.green);//луч для сверки с землёй
+//<<<<<<< Updated upstream
 
-        //if (hit)
-        //{
-        //    targetPos = targetTransform.position;
-        //    Debug.DrawRay(transform.position, targetPos - transform.position, Color.red);
-        //    MoveTowardsPlayer();
-        //}
-        //else
-        //{
-        //    MoveTowardsPlayer(); // тут надо патрулировать lastpos
-        //}
+//        //if (hit)
+//        //{
+//        //    targetPos = targetTransform.position;
+//        //    Debug.DrawRay(transform.position, targetPos - transform.position, Color.red);
+//        //    MoveTowardsPlayer();
+//        //}
+//        //else
+//        //{
+//        //    MoveTowardsPlayer(); // тут надо патрулировать lastpos
+//        //}
+//=======
+//>>>>>>> Stashed changes
     }
+
     private void OnDrawGizmosSelected()//визуализация радиуса обнаружения
     {
         Gizmos.color = Color.red;
